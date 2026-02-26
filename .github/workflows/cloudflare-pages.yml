@@ -1,0 +1,41 @@
+name: Deploy to Cloudflare Pages
+# Builds the static site and deploys to Cloudflare Pages on every push to main.
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      deployments: write
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Build site
+        run: |
+          python -m scripts.build_directory
+          python -m scripts.generate_sitemap
+        env:
+          SITE_URL: ${{ vars.SITE_URL || 'https://directory.quickutils.top' }}
+          GA_MEASUREMENT_ID: ${{ vars.GA_MEASUREMENT_ID || 'G-XXXXXXXXXX' }}
+          ADSENSE_PUBLISHER_ID: ${{ vars.ADSENSE_PUBLISHER_ID || 'ca-pub-XXXXXXXXXX' }}
+          AMAZON_AFFILIATE_TAG: ${{ vars.AMAZON_AFFILIATE_TAG || 'quickutils-20' }}
+
+      - name: Deploy to Cloudflare Pages
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: pages deploy dist --project-name=quickutils-directory
