@@ -5,9 +5,15 @@ Walks the dist/ directory and generates a valid XML sitemap
 containing URLs for every generated page.
 """
 import os
+import sys
 from datetime import datetime, timezone
 from pathlib import Path
 from xml.etree.ElementTree import Element, SubElement, ElementTree, indent
+
+# Ensure project root is in sys.path for Cloudflare Pages environment
+PROJECT_ROOT = Path(__file__).resolve().parent.parent
+if str(PROJECT_ROOT) not in sys.path:
+    sys.path.insert(0, str(PROJECT_ROOT))
 
 from scripts.utils import DIST_DIR, SITE_URL, ensure_dir
 

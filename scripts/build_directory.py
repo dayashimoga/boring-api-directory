@@ -7,8 +7,14 @@ thousands of static HTML pages into dist/.
 import json
 import os
 import shutil
+import sys
 from datetime import datetime, timezone
 from pathlib import Path
+
+# Ensure project root is in sys.path for Cloudflare Pages environment
+PROJECT_ROOT = Path(__file__).resolve().parent.parent
+if str(PROJECT_ROOT) not in sys.path:
+    sys.path.insert(0, str(PROJECT_ROOT))
 
 from jinja2 import Environment, FileSystemLoader
 
