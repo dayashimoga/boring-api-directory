@@ -30,8 +30,8 @@ jobs:
         env:
           SITE_URL: ${{ secrets.SITE_URL || vars.SITE_URL || 'https://directory.quickutils.top' }}
           GA_MEASUREMENT_ID: ${{ secrets.GA_MEASUREMENT_ID || vars.GA_MEASUREMENT_ID || 'G-LKF615Z8NY' }}
-          ADSENSE_PUBLISHER_ID: ${{ secrets.ADSENSE_PUBLISHER_ID || vars.ADSENSE_PUBLISHER_ID || 'ca-pub-XXXXXXXXXX' }}
-          AMAZON_AFFILIATE_TAG: ${{ secrets.AMAZON_AFFILIATE_TAG || vars.AMAZON_AFFILIATE_TAG || 'quickutils-20' }}
+          ADSENSE_PUBLISHER_ID: ${{ secrets.ADSENSE_PUBLISHER_ID }}
+          AMAZON_AFFILIATE_TAG: ${{ secrets.AMAZON_AFFILIATE_TAG }}
 
       - name: Deploy to Cloudflare Pages
         uses: cloudflare/wrangler-action@v3

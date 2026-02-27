@@ -34,7 +34,7 @@ from scripts.utils import (
 )
 
 # Amazon Affiliate tag from environment variable
-AMAZON_TAG = os.environ.get("AMAZON_AFFILIATE_TAG", "quickutils-20")
+AMAZON_TAG = (os.environ.get("AMAZON_AFFILIATE_TAG") or "").strip() or "quickutils-20"
 
 # Curated book recommendations per category (Amazon affiliate links)
 BOOK_RECOMMENDATIONS = {
@@ -169,10 +169,9 @@ def create_jinja_env() -> Environment:
             "site_description": SITE_DESCRIPTION,
             "build_date": datetime.now(timezone.utc).strftime("%Y-%m-%d"),
             "current_year": datetime.now(timezone.utc).year,
-            "ga_measurement_id": os.environ.get("GA_MEASUREMENT_ID", "G-LKF615Z8NY"),
-            "adsense_publisher_id": os.environ.get(
-                "ADSENSE_PUBLISHER_ID", "ca-pub-XXXXXXXXXX"
-            ),
+            "site_description": SITE_DESCRIPTION,
+            "ga_measurement_id": (os.environ.get("GA_MEASUREMENT_ID") or "").strip() or "G-LKF615Z8NY",
+            "adsense_publisher_id": (os.environ.get("ADSENSE_PUBLISHER_ID") or "").strip() or "ca-pub-XXXXXXXXXX",
             "amazon_affiliate_tag": AMAZON_TAG,
         }
     )
@@ -302,16 +301,18 @@ def build_index_page(env: Environment, items: list, categories: dict):
     featured = items[:8]
 
     # Debug info for enrollment verification (masked)
-    ads_id = os.environ.get("ADSENSE_PUBLISHER_ID", "NOT_FOUND")
-    amazon_id = os.environ.get("AMAZON_AFFILIATE_TAG", "NOT_FOUND")
+    ads_id = (os.environ.get("ADSENSE_PUBLISHER_ID") or "").strip()
+    amazon_id = (os.environ.get("AMAZON_AFFILIATE_TAG") or "").strip()
     
-    print(f"DEBUG: ADSENSE_PUBLISHER_ID found: {ads_id[:8]}...{ads_id[-4:] if len(ads_id) > 4 else ''}")
-    print(f"DEBUG: AMAZON_AFFILIATE_TAG found: {amazon_id[:8]}...{amazon_id[-4:] if len(amazon_id) > 4 else ''}")
+    print(f"DEBUG: ADSENSE_PUBLISHER_ID env value: '{ads_id[:8]}...{ads_id[-4:] if len(ads_id) > 4 else ''}'")
+    print(f"DEBUG: AMAZON_AFFILIATE_TAG env value: '{amazon_id[:8]}...{amazon_id[-4:] if len(amazon_id) > 4 else ''}'")
 
     with open(DIST_DIR / "debug_build.txt", "w") as f:
-        f.write(f"Build Time: {datetime.now().isoformat()}\n")
-        f.write(f"AdSense ID: {ads_id[:8]}...{ads_id[-4:] if len(ads_id) > 4 else ''}\n")
-        f.write(f"Amazon Tag: {amazon_id[:8]}...{amazon_id[-4:] if len(amazon_id) > 4 else ''}\n")
+        f.write(f"Build Date: {datetime.now().isoformat()}\n")
+        f.write(f"ADSENSE_ID_ENV: '{ads_id}'\n")
+        f.write(f"AMAZON_TAG_ENV: '{amazon_id}'\n")
+        f.write(f"Final AdSense ID Used: {(ads_id or 'ca-pub-XXXXXXXXXX')}\n")
+        f.write(f"Final Amazon Tag Used: {(amazon_id or 'quickutils-20')}\n")
 
     # Categories context
     html = template.render(
