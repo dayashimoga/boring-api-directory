@@ -301,6 +301,19 @@ def build_index_page(env: Environment, items: list, categories: dict):
     # Pick featured items (first 8 from the database)
     featured = items[:8]
 
+    # Debug info for enrollment verification (masked)
+    ads_id = os.environ.get("ADSENSE_PUBLISHER_ID", "NOT_FOUND")
+    amazon_id = os.environ.get("AMAZON_AFFILIATE_TAG", "NOT_FOUND")
+    
+    print(f"DEBUG: ADSENSE_PUBLISHER_ID found: {ads_id[:8]}...{ads_id[-4:] if len(ads_id) > 4 else ''}")
+    print(f"DEBUG: AMAZON_AFFILIATE_TAG found: {amazon_id[:8]}...{amazon_id[-4:] if len(amazon_id) > 4 else ''}")
+
+    with open(DIST_DIR / "debug_build.txt", "w") as f:
+        f.write(f"Build Time: {datetime.now().isoformat()}\n")
+        f.write(f"AdSense ID: {ads_id[:8]}...{ads_id[-4:] if len(ads_id) > 4 else ''}\n")
+        f.write(f"Amazon Tag: {amazon_id[:8]}...{amazon_id[-4:] if len(amazon_id) > 4 else ''}\n")
+
+    # Categories context
     html = template.render(
         categories=category_cards,
         featured_items=featured,
