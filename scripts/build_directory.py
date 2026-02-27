@@ -169,7 +169,7 @@ def create_jinja_env() -> Environment:
             "site_description": SITE_DESCRIPTION,
             "build_date": datetime.now(timezone.utc).strftime("%Y-%m-%d"),
             "current_year": datetime.now(timezone.utc).year,
-            "ga_measurement_id": os.environ.get("GA_MEASUREMENT_ID", "G-XXXXXXXXXX"),
+            "ga_measurement_id": os.environ.get("GA_MEASUREMENT_ID", "G-LKF615Z8NY"),
             "adsense_publisher_id": os.environ.get(
                 "ADSENSE_PUBLISHER_ID", "ca-pub-XXXXXXXXXX"
             ),
