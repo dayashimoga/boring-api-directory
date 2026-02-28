@@ -300,20 +300,6 @@ def build_index_page(env: Environment, items: list, categories: dict):
     # Pick featured items (first 8 from the database)
     featured = items[:8]
 
-    # Debug info for enrollment verification (masked)
-    ads_id = (os.environ.get("ADSENSE_PUBLISHER_ID") or "").strip()
-    amazon_id = (os.environ.get("AMAZON_AFFILIATE_TAG") or "").strip()
-    
-    print(f"DEBUG: ADSENSE_PUBLISHER_ID env value: '{ads_id[:8]}...{ads_id[-4:] if len(ads_id) > 4 else ''}'")
-    print(f"DEBUG: AMAZON_AFFILIATE_TAG env value: '{amazon_id[:8]}...{amazon_id[-4:] if len(amazon_id) > 4 else ''}'")
-
-    with open(DIST_DIR / "debug_build.txt", "w") as f:
-        f.write(f"Build Date: {datetime.now().isoformat()}\n")
-        f.write(f"ADSENSE_ID_ENV: '{ads_id}'\n")
-        f.write(f"AMAZON_TAG_ENV: '{amazon_id}'\n")
-        f.write(f"Final AdSense ID Used: {(ads_id or 'ca-pub-XXXXXXXXXX')}\n")
-        f.write(f"Final Amazon Tag Used: {(amazon_id or 'quickutils-20')}\n")
-
     # Categories context
     html = template.render(
         categories=category_cards,

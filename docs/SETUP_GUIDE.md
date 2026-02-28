@@ -308,8 +308,8 @@ If Netlify doesn't work out, here are free alternatives that support static site
 #### Step 1: Get Your Cloudflare Account ID
 
 1. Sign up at [cloudflare.com](https://www.cloudflare.com/) (free)
-2. After login, look at the URL in your browser: `https://dash.cloudflare.com/XXXXXXXXX`
-3. The string after `dash.cloudflare.com/` is your **Account ID**
+2. After login, look at the URL in your browser: `dash.cloudflare.com/0038891404c0d165f973715c6130eb5a`
+3. The string after `dash.cloudflare.com/` is your **Account ID**: `0038891404c0d165f973715c6130eb5a`
 4. Or: click your profile icon → **Account Home** → find Account ID in the right sidebar
 
 #### Step 2: Create a Cloudflare API Token
@@ -328,8 +328,8 @@ If Netlify doesn't work out, here are free alternatives that support static site
 1. Go to your GitHub repo → **Settings** → **Secrets and variables** → **Actions**
 2. Add **Repository secrets**:
    ```
-   CLOUDFLARE_API_TOKEN = (paste your API token)
-   CLOUDFLARE_ACCOUNT_ID = (paste your Account ID)
+   CLOUDFLARE_API_TOKEN = (Your generated token from the "Edit Cloudflare Workers" template)
+   CLOUDFLARE_ACCOUNT_ID = 0038891404c0d165f973715c6130eb5a
    ```
 
 #### Step 4: Deploy (Automatic)
@@ -369,6 +369,7 @@ Since your domain is on **Porkbun**:
 nslookup directory.quickutils.top
 
 # Should show: quickutils-directory.pages.dev
+# (Confirmed active on quickutils.top via nslookup)
 
 # Check HTTPS
 curl -I https://directory.quickutils.top

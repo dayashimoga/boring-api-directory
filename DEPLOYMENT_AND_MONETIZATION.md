@@ -1,29 +1,26 @@
-# DailyLift: Deployment, Monetization, and Automation Guide
+# QuickUtils API Directory: Deployment, Monetization, and Automation Guide
 
-This document is the **Comprehensive Step-by-Step Configuration Guide** for the DailyLift application. It details exactly how to configure every third-party tool, automation script, and monetization platform integrated into the repository.
+This document is the **Comprehensive Step-by-Step Configuration Guide** for the QuickUtils API Directory. It details exactly how to configure every third-party tool, automation script, and monetization platform integrated into the repository.
 
 ---
 
-## 1. Hosting & Domain Setup (Netlify)
+## 1. Hosting & Domain Setup (Cloudflare Pages)
 
-DailyLift uses a Zero-Cost Jamstack Architecture. It is hosted on Netlify, which serves the static HTML/CSS/JS files globally for free.
+QuickUtils API Directory uses a Zero-Cost Jamstack Architecture. It is hosted on Cloudflare Pages, which serves the static HTML/CSS/JS files globally for free.
 
 ### Step-by-Step Configuration:
-1. **Purchase a Domain:** Buy a domain name (e.g., `quickutils.top`) from a registrar (Namecheap, Porkbun, GoDaddy).
-2. **Deploy on Netlify:**
-   - Log into [Netlify](https://app.netlify.com/).
-   - Click **Add new site** > **Import an existing project**.
-   - Connect your GitHub account and select your `dailylift` repository.
+1. **Purchase a Domain:** You are using `quickutils.top` (confirmed via Porkbun).
+2. **Deploy on Cloudflare Pages:**
+   - Log into [Cloudflare](https://dash.cloudflare.com/).
+   - Connect your GitHub account and select your `boring-api-directory` repository.
    - Configure the Build settings:
-     - **Build command:** `npm run build`
+     - **Build command:** `python -m scripts.build_directory && python -m scripts.generate_sitemap`
      - **Publish directory:** `dist`
-   - Click **Deploy Site**.
 3. **Configure the Custom Domain:**
-   - In Netlify, go to **Domain management** > **Add custom domain**.
-   - Enter your domain name.
-   - Netlify will provide 4 custom **Name Servers** (e.g., `dns1.p01.nsone.net`).
-   - Log into your domain registrar and replace your domain's default Name Servers with the 4 Netlify servers.
-4. **SSL Certificate:** Once DNS propagation finishes (can take 24 hours), Netlify automatically provisions a free Let's Encrypt SSL certificate.
+   - In Cloudflare, go to **Pages** > **Custom domains**.
+   - Enter `directory.quickutils.top`.
+   - Ensure your DNS (Porkbun or Cloudflare) points to the `.pages.dev` URL.
+4. **SSL Certificate:** Cloudflare automatically provides free SSL.
 
 ---
 
@@ -35,11 +32,10 @@ Google Analytics (GA4) tracks your website visitors, page views, and user behavi
 1. **Create an Account:** Go to [Google Analytics](https://analytics.google.com/) and sign in.
 2. **Create a Property:** Set up a new property using your website URL.
 3. **Get the Measurement ID:** Create a **Web Data Stream** for your site. Once created, copy the **Measurement ID** (format: `G-XXXXXXXXXX`).
-4. **Integration in DailyLift:**
-   - Open all HTML files in `src/` (`index.html`, `tools.html`, `blog.html`, `about.html`) and the builder template (`scripts/build.js`).
-   - Locate the Google Analytics `<script>` tag in the `<head>`.
-   - Replace the placeholder `G-QPDP38ZCCV` with your actual Measurement ID.
-   - Commit and push the changes.
+4. **Integration in QuickUtils:**
+   - The Measurement ID `G-LKF615Z8NY` is integrated via GitHub Secrets.
+   - Template files in `src/templates/` automatically include the tracking code.
+   - Commit and push to trigger a build.
 
 ---
 
@@ -55,10 +51,9 @@ Google AdSense injects contextual banner ads into the website.
    - In AdSense, go to **Ads** > **By ad unit** > **Display ads**.
    - Create distinct ad units so you can track revenue per page type (e.g., "Homepage Banner", "Tools Page", "Blog Posts").
    - Click **Create** and copy the `data-ad-slot` number (e.g., `2246027256`) from the generated code snippet.
-5. **Integration in DailyLift:**
-   - Open all `.html` files and `scripts/build.js`.
-   - Locate the `<ins class="adsbygoogle">` tags.
-   - Replace the `data-ad-slot` value with the corresponding slot ID you generated. Note: The codebase currently has specific IDs integrated (`2246027256` for index, `2573330311` for tools, `8571762456` for blog, `1479740496` for about). Update these with your own if they change.
+5. **Integration in QuickUtils:**
+   - The Publisher ID `ca-pub-5193703345853377` is used in `src/ads.txt`.
+   - Ad slots slots are handled dynamically in templates like `item.html`.
 6. **Wait for Approval ("Getting Ready"):**
    - Google takes **3–14 days** to manually review the site for quality guidelines.
    - During the "Getting ready" state in your AdSense dashboard, **ads will intentionally appear as blank spaces** on your site. This is completely standard. 
@@ -80,10 +75,9 @@ Amazon Associates allows you to earn commissions when users click your links and
 3. **Generate Affiliate Links:**
    - Search for the product (e.g., *Atomic Habits*) on Amazon.
    - Use the **Amazon SiteStripe** toolbar at the top of the page to generate a "Text" link.
-4. **Integration in DailyLift:**
-   - Open `src/index.html`.
-   - Locate the **Books We Recommend** section.
-   - Replace the standard book `href` links with your generated Amazon affiliate links.
+4. **Integration in QuickUtils:**
+   - Set the `AMAZON_AFFILIATE_TAG` in GitHub Secrets (e.g., `quickutils-21`).
+   - The `build_directory.py` script automatically injects this tag into all book links on API detail pages.
 
 ---
 
@@ -108,7 +102,7 @@ Gumroad is used to sell digital products directly to your audience (e.g., the PD
 
 ## 6. Social Media Automation (Mastodon / Fediverse)
 
-DailyLift automatically posts a random daily quote to a Mastodon social profile every day at midnight UTC, powered entirely by a free GitHub Action.
+QuickUtils API Directory automatically posts a random daily API to a Mastodon social profile every day at 12:00 PM UTC, powered by a free GitHub Action.
 
 ### Step-by-Step Configuration:
 1. **Create a Mastodon Account:** Go to a server like [mastodon.social](https://mastodon.social) and create your brand account.

@@ -96,7 +96,9 @@ python -m http.server 8000 --directory dist
 | Document | Description |
 |---|---|
 | [Architecture](docs/ARCHITECTURE.md) | Technical architecture, data flow, code walkthrough |
-| [Setup Guide](docs/SETUP_GUIDE.md) | Step-by-step for AdSense, Amazon, Analytics, Netlify, domains |
+| [Technical Requirements](docs/TECHNICAL_REQUIREMENTS.md) | Python environment, dependencies, and build specs |
+| [Setup Guide](docs/SETUP_GUIDE.md) | Quick start for AdSense, Amazon, Analytics, and domains |
+| [Deployment & Monetization](DEPLOYMENT_AND_MONETIZATION.md) | Detailed walkthrough for Cloudflare, AdSense, and Affiliate setup |
 | [Testing](docs/TESTING.md) | Test suite, coverage, CI pipeline documentation |
 
 ---
@@ -109,6 +111,8 @@ python -m http.server 8000 --directory dist
 | `GA_MEASUREMENT_ID` | `G-XXXXXXXXXX` | Google Analytics 4 measurement ID |
 | `ADSENSE_PUBLISHER_ID` | `ca-pub-XXXXXXXXXX` | Google AdSense publisher ID |
 | `AMAZON_AFFILIATE_TAG` | `quickutils-20` | Amazon Associates tracking tag |
+| `CLOUDFLARE_ACCOUNT_ID` | — | Cloudflare Account ID for deployment |
+| `CLOUDFLARE_API_TOKEN` | — | Cloudflare API Token for deployment |
 | `MASTODON_ACCESS_TOKEN` | — | Mastodon API access token (for social bot) |
 | `MASTODON_INSTANCE_URL` | `mastodon.social` | Mastodon instance URL |
 
