@@ -27,6 +27,8 @@ jobs:
         run: |
           python -m scripts.build_directory
           python -m scripts.generate_sitemap
+          # Generate IndexNow Key
+          echo "e527f311ebc44a2c9fac3b8a36d2e617" > dist/e527f311ebc44a2c9fac3b8a36d2e617.txt
         env:
           SITE_URL: ${{ secrets.SITE_URL || vars.SITE_URL || 'https://directory.quickutils.top' }}
           GA_MEASUREMENT_ID: ${{ secrets.GA_MEASUREMENT_ID || vars.GA_MEASUREMENT_ID || 'G-LKF615Z8NY' }}
@@ -39,3 +41,6 @@ jobs:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           command: pages deploy dist --project-name=boring-api-directory
+
+      - name: Ping Search Engines (IndexNow)
+        run: python scripts/indexnow_submit.py ${{ vars.SITE_URL || 'https://directory.quickutils.top' }} dist e527f311ebc44a2c9fac3b8a36d2e617
