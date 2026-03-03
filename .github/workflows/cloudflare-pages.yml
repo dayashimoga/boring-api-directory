@@ -44,3 +44,8 @@ jobs:
 
       - name: Ping Search Engines (IndexNow)
         run: python scripts/indexnow_submit.py ${{ vars.SITE_URL || 'https://directory.quickutils.top' }} dist e527f311ebc44a2c9fac3b8a36d2e617
+
+      - name: Auto-Pin to Pinterest
+        run: python scripts/post_pinterest.py ${{ vars.SITE_URL || 'https://directory.quickutils.top' }} "Web Tools & Utilities" dist
+        env:
+          PINTEREST_ACCESS_TOKEN: ${{ secrets.PINTEREST_ACCESS_TOKEN }}
