@@ -198,6 +198,37 @@ The bot posts a random API from the directory to Mastodon daily, driving traffic
 
 ---
 
+## 5. Pinterest Visual Search Automation
+
+The bot automatically converts generated API directory thumbnails into Pinterest Pins to drive visual search traffic.
+
+### Step-by-Step
+
+1. **Create a Pinterest Business Account**
+   - Head to [Pinterest Business](https://business.pinterest.com/) and create a free account.
+
+2. **Register a Developer Application**
+   - Go to the [Pinterest Developer Platform](https://developers.pinterest.com/).
+   - Click **My Apps** -> **Connect App**.
+   - Fill in the required fields (name, descriptions, privacy policy URL).
+
+3. **Generate an Access Token**
+   - On your app dashboard, under the "Generate Access Tokens" section, select **Production Limited**.
+   - Click the red **Generate token** button.
+   - Copy the long string starting with `pina_...`.
+
+4. **Add Secrets to Cloudflare Pages Deployment**
+   - Go to your Cloudflare Pages project (e.g., `boring-api-directory`).
+   - Navigate to **Settings** → **Environment variables**.
+   - Add a new production variable:
+     ```
+     PINTEREST_ACCESS_TOKEN=pina_YOUR_ACCESS_TOKEN_HERE
+     ```
+   - Click Save. 
+   - The automation hook (`post_pinterest.py`) will automatically execute on the next GitHub push.
+
+---
+
 ## 5. Netlify Deployment
 
 Netlify automatically builds and deploys your site when you push to GitHub.

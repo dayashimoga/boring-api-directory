@@ -1218,5 +1218,205 @@
         "slug": "eu-open-data",
         "title": "EU Open Data Portal",
         "url": "https://data.europa.eu/en"
+    },
+    {
+        "auth": "None",
+        "category": "Online Courses",
+        "cors": "yes",
+        "description": "Coursera platform offering thousands of university-level courses, specializations, and online degrees from top institutions worldwide",
+        "https": true,
+        "slug": "coursera",
+        "title": "Coursera",
+        "url": "https://www.coursera.org/"
+    },
+    {
+        "auth": "None",
+        "category": "Online Courses",
+        "cors": "yes",
+        "description": "Udemy marketplace with over 200,000 online courses in programming, business, design, and personal development",
+        "https": true,
+        "slug": "udemy",
+        "title": "Udemy",
+        "url": "https://www.udemy.com/"
+    },
+    {
+        "auth": "None",
+        "category": "Online Courses",
+        "cors": "yes",
+        "description": "edX platform providing free university courses from Harvard, MIT, and 160+ institutions worldwide",
+        "https": true,
+        "slug": "edx",
+        "title": "edX",
+        "url": "https://www.edx.org/"
+    },
+    {
+        "auth": "None",
+        "category": "Online Courses",
+        "cors": "yes",
+        "description": "Skillshare creative learning platform with thousands of classes in illustration, design, photography, and business",
+        "https": true,
+        "slug": "skillshare",
+        "title": "Skillshare",
+        "url": "https://www.skillshare.com/"
+    },
+    {
+        "auth": "None",
+        "category": "Online Courses",
+        "cors": "yes",
+        "description": "LinkedIn Learning professional development platform with courses in business, technology, and creative skills",
+        "https": true,
+        "slug": "linkedin-learning",
+        "title": "LinkedIn Learning",
+        "url": "https://www.linkedin.com/learning/"
+    },
+    {
+        "auth": "None",
+        "category": "Online Courses",
+        "cors": "yes",
+        "description": "Pluralsight technology skills platform with expert-led courses in software development, IT, and data science",
+        "https": true,
+        "slug": "pluralsight",
+        "title": "Pluralsight",
+        "url": "https://www.pluralsight.com/"
+    },
+    {
+        "auth": "None",
+        "category": "Online Courses",
+        "cors": "yes",
+        "description": "Codecademy interactive coding platform teaching Python, JavaScript, SQL, and data science through hands-on exercises",
+        "https": true,
+        "slug": "codecademy",
+        "title": "Codecademy",
+        "url": "https://www.codecademy.com/"
+    },
+    {
+        "auth": "None",
+        "category": "Online Courses",
+        "cors": "yes",
+        "description": "DataCamp data science and analytics learning platform with interactive Python, R, and SQL courses",
+        "https": true,
+        "slug": "datacamp",
+        "title": "DataCamp",
+        "url": "https://www.datacamp.com/"
+    },
+    {
+        "auth": "None",
+        "category": "Productivity",
+        "cors": "yes",
+        "description": "Notion all-in-one workspace for notes, docs, projects, wikis, and team collaboration with AI features",
+        "https": true,
+        "slug": "notion",
+        "title": "Notion",
+        "url": "https://www.notion.so/"
+    },
+    {
+        "auth": "None",
+        "category": "Productivity",
+        "cors": "yes",
+        "description": "Trello visual project management using boards, lists, and cards for organizing work and tracking progress",
+        "https": true,
+        "slug": "trello",
+        "title": "Trello",
+        "url": "https://trello.com/"
+    },
+    {
+        "auth": "None",
+        "category": "Productivity",
+        "cors": "yes",
+        "description": "Asana work management platform for teams to organize, track, and manage projects and daily tasks",
+        "https": true,
+        "slug": "asana",
+        "title": "Asana",
+        "url": "https://asana.com/"
+    },
+    {
+        "auth": "None",
+        "category": "Productivity",
+        "cors": "yes",
+        "description": "Monday.com work operating system enabling teams to build custom workflows and manage any project type",
+        "https": true,
+        "slug": "monday-com",
+        "title": "Monday.com",
+        "url": "https://monday.com/"
+    },
+    {
+        "auth": "None",
+        "category": "Productivity",
+        "cors": "yes",
+        "description": "ClickUp productivity platform combining tasks, docs, goals, whiteboards, and chat in one application",
+        "https": true,
+        "slug": "clickup",
+        "title": "ClickUp",
+        "url": "https://clickup.com/"
+    },
+    {
+        "auth": "None",
+        "category": "Productivity",
+        "cors": "yes",
+        "description": "Todoist task manager and to-do list app trusted by 30 million people for organizing work and life",
+        "https": true,
+        "slug": "todoist",
+        "title": "Todoist",
+        "url": "https://todoist.com/"
+    },
+    {
+        "auth": "None",
+        "category": "Student Essentials",
+        "cors": "yes",
+        "description": "Google Scholar free academic search engine indexing scholarly articles, theses, books, and court opinions",
+        "https": true,
+        "slug": "google-scholar",
+        "title": "Google Scholar",
+        "url": "https://scholar.google.com/"
+    },
+    {
+        "auth": "None",
+        "category": "Student Essentials",
+        "cors": "yes",
+        "description": "Zotero free open-source reference management software for collecting, organizing, and citing research sources",
+        "https": true,
+        "slug": "zotero",
+        "title": "Zotero",
+        "url": "https://www.zotero.org/"
+    },
+    {
+        "auth": "None",
+        "category": "Student Essentials",
+        "cors": "yes",
+        "description": "Grammarly AI-powered writing assistant checking grammar, spelling, punctuation, and style in real time",
+        "https": true,
+        "slug": "grammarly",
+        "title": "Grammarly",
+        "url": "https://www.grammarly.com/"
+    },
+    {
+        "auth": "None",
+        "category": "Student Essentials",
+        "cors": "yes",
+        "description": "Wolfram Alpha computational knowledge engine answering math, science, and engineering questions instantly",
+        "https": true,
+        "slug": "wolfram-alpha",
+        "title": "Wolfram Alpha",
+        "url": "https://www.wolframalpha.com/"
+    },
+    {
+        "auth": "None",
+        "category": "Student Essentials",
+        "cors": "yes",
+        "description": "Overleaf collaborative LaTeX editor for writing, editing, and publishing scientific and academic documents online",
+        "https": true,
+        "slug": "overleaf",
+        "title": "Overleaf",
+        "url": "https://www.overleaf.com/"
+    },
+    {
+        "auth": "None",
+        "category": "Student Essentials",
+        "cors": "yes",
+        "description": "Anki free spaced repetition flashcard app for efficient memorization of languages, medicine, and any subject",
+        "https": true,
+        "slug": "anki",
+        "title": "Anki",
+        "url": "https://apps.ankiweb.net/"
     }
 ]

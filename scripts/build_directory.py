@@ -124,6 +124,18 @@ BOOK_RECOMMENDATIONS = {
     "Open Data": [
         {"title": "Open Data Now", "author": "Joel Gurin", "asin": "0071829776"},
     ],
+    "Online Courses": [
+        {"title": "Ultralearning", "author": "Scott Young", "asin": "006285268X"},
+        {"title": "Make It Stick", "author": "Peter C. Brown", "asin": "0674729013"},
+    ],
+    "Productivity": [
+        {"title": "Getting Things Done", "author": "David Allen", "asin": "0143126563"},
+        {"title": "Atomic Habits", "author": "James Clear", "asin": "0735211299"},
+    ],
+    "Student Essentials": [
+        {"title": "A Mind for Numbers", "author": "Barbara Oakley", "asin": "039916524X"},
+        {"title": "How to Become a Straight-A Student", "author": "Cal Newport", "asin": "0767922719"},
+    ],
 }
 
 # Default books for categories without specific recommendations
