@@ -8,3 +8,11 @@ coverage/
 tests_output*
 final_test_out*
 dailyfacts_coverage*
+
+# Virtual Environments
+venv/
+.venv/
+p_venv/
+env/
+.venv_test/
+.debug-venv/
