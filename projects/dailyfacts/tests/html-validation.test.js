@@ -103,6 +103,40 @@ describe('HTML Structure', () => {
     test('has mobile nav toggle', () => {
         expect(html).toContain('id="navToggle"');
     });
+
+    describe('Integrations (GA, AdSense, Amazon, Pinterest)', () => {
+        test('has Google Analytics GA4', () => {
+            expect(html).toContain('googletagmanager.com/gtag/js?id=G-QPDP38ZCCV');
+        });
+
+        test('has Google AdSense publisher ID', () => {
+            expect(html).toContain('ca-pub-5193703345853377');
+        });
+
+        test('has AdSense ad units', () => {
+            expect(html).toContain('class="adsbygoogle"');
+            expect(html).toContain('data-ad-slot="2246027256"');
+        });
+
+        test('has Pinterest domain verification', () => {
+            expect(html).toContain('name="p:domain_verify"');
+            expect(html).toContain('content="YOUR_PINTEREST_CODE"');
+        });
+
+        test('has Pinterest share button', () => {
+            expect(html).toContain('pinterest.com/pin/create/button/');
+        });
+
+        test('has Amazon affiliate book recommendations', () => {
+            expect(html).toContain('id="recommended-books"');
+            expect(html).toContain('amazon.com/dp/');
+            expect(html).toContain('tag=df-quickutils-21');
+        });
+
+        test('Amazon links use sponsored rel attribute', () => {
+            expect(html).toContain('rel="noopener sponsored"');
+        });
+    });
 });
 
 describe('CSS Structure', () => {

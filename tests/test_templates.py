@@ -105,6 +105,21 @@ class TestBaseTemplate:
         assert 'property="og:title"' in html
         assert 'property="og:description"' in html
 
+    def test_contains_pinterest_verify(self, real_env):
+        tpl = real_env.get_template("index.html")
+        html = tpl.render(
+            page_title="Test",
+            page_description="Test",
+            page_url="https://test.com",
+            canonical_url="https://test.com",
+            categories=[],
+            featured_items=[],
+            total_apis=0,
+            total_categories=0,
+        )
+        assert 'name="p:domain_verify"' in html
+        assert 'content="YOUR_PINTEREST_CODE"' in html
+
 
 class TestItemTemplate:
     """Test the item detail template."""
