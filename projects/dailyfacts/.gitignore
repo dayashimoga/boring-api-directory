@@ -1,0 +1,10 @@
+node_modules/
+dist/
+coverage/
+.DS_Store
+*.log
+*.txt
+*_utf8.txt
+tests_output*
+final_test_out*
+dailyfacts_coverage*
