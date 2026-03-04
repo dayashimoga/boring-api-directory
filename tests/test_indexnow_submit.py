@@ -2,6 +2,7 @@ import json
 import os
 import sys
 from unittest.mock import patch, mock_open, MagicMock
+from urllib.error import HTTPError, URLError
 
 import pytest
 
@@ -59,8 +60,20 @@ def test_submit_to_indexnow_failure_status(mock_urlopen):
 
 
 @patch("scripts.indexnow_submit.urlopen")
-def test_submit_to_indexnow_network_error(mock_urlopen):
-    mock_urlopen.side_effect = Exception("Network Error")
+def test_submit_to_indexnow_generic_exception(mock_urlopen):
+    mock_urlopen.side_effect = Exception("Generic Error")
+    success = submit_to_indexnow("test.com", "key123", ["http://test.com/page1"])
+    assert success is False
+
+@patch("scripts.indexnow_submit.urlopen")
+def test_submit_to_indexnow_http_error(mock_urlopen):
+    mock_urlopen.side_effect = HTTPError("url", 404, "Not Found", {}, None)
+    success = submit_to_indexnow("test.com", "key123", ["http://test.com/page1"])
+    assert success is False
+
+@patch("scripts.indexnow_submit.urlopen")
+def test_submit_to_indexnow_url_error(mock_urlopen):
+    mock_urlopen.side_effect = URLError("Reason")
     success = submit_to_indexnow("test.com", "key123", ["http://test.com/page1"])
     assert success is False
 
@@ -118,3 +131,20 @@ def test_main_submit_fails(mock_submit, mock_parse, mock_exists):
     with pytest.raises(SystemExit) as exc:
         main()
     assert exc.value.code == 1
+
+@patch("sys.argv", ["indexnow.py"])
+def test_main_not_enough_args():
+    with pytest.raises(SystemExit) as exc:
+        main()
+    assert exc.value.code == 1
+
+@patch("sys.argv", ["indexnow.py", "test.com", "dist", "key123"])
+@patch("os.path.exists")
+@patch("scripts.indexnow_submit.parse_sitemap")
+@patch("scripts.indexnow_submit.submit_to_indexnow")
+def test_main_host_parsing(mock_submit, mock_parse, mock_exists):
+    mock_exists.return_value = True
+    mock_parse.return_value = ["http://test.com/page1"]
+    mock_submit.return_value = True
+    main()
+    mock_submit.assert_called_with("test.com", "key123", ["http://test.com/page1"])

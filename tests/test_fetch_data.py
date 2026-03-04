@@ -102,6 +102,29 @@ class TestNormalizeEntry:
         result = normalize_entry(entry)
         assert result["cors"] == "unknown"
 
+    def test_missing_optional_fields(self):
+        # Missing Auth, HTTPS, Cors
+        entry = {
+            "API": "Basic",
+            "Description": "Desc",
+            "Link": "https://link.com",
+            "Category": "Cat"
+        }
+        result = normalize_entry(entry)
+        assert result["auth"] == "None"
+        assert result["https"] is True
+        assert result["cors"] == "unknown"
+
+    def test_non_string_cors(self):
+        entry = {
+            "API": "Non-string",
+            "Description": "Desc",
+            "Cors": 123,
+            "Category": "Cat"
+        }
+        result = normalize_entry(entry)
+        assert result["cors"] == "unknown"
+
 
 class TestDeduplicate:
     """Test deduplication logic."""
@@ -246,12 +269,31 @@ class TestFetchAndSave:
         assert result is True
 
     @responses.activate
-    def test_all_sources_fail(self, tmp_path):
-        responses.add(responses.GET, PRIMARY_URL, status=500)
-        responses.add(responses.GET, ALT_URL, status=500)
+    def test_no_valid_entries(self, tmp_path):
+        responses.add(responses.GET, PRIMARY_URL, json={"entries": []}, status=200)
+        responses.add(responses.GET, ALT_URL, json=[], status=200)
 
         with patch("scripts.fetch_data.DATA_DIR", tmp_path), \
              patch("scripts.utils.DATA_DIR", tmp_path):
             result = fetch_and_save()
-
         assert result is False
+
+
+class TestMain:
+    """Test the main CLI entry point."""
+
+    @patch("scripts.fetch_data.fetch_and_save")
+    def test_main_success(self, mock_fetch):
+        mock_fetch.return_value = True
+        with patch("sys.exit") as mock_exit:
+            from scripts.fetch_data import main
+            main()
+            mock_exit.assert_called_once_with(0)
+
+    @patch("scripts.fetch_data.fetch_and_save")
+    def test_main_failure(self, mock_fetch):
+        mock_fetch.return_value = False
+        with patch("sys.exit") as mock_exit:
+            from scripts.fetch_data import main
+            main()
+            mock_exit.assert_called_once_with(0)

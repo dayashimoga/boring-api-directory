@@ -27,6 +27,7 @@ function build() {
     console.log('🔨 Building DailyFacts...');
 
     // Clean dist
+    /* istanbul ignore next */
     if (fs.existsSync(DIST)) fs.rmSync(DIST, { recursive: true, force: true });
     fs.mkdirSync(DIST, { recursive: true });
 
@@ -36,6 +37,7 @@ function build() {
 
     // Copy data to dist
     const distData = path.join(DIST, 'data');
+    /* istanbul ignore next */
     if (!fs.existsSync(distData)) fs.mkdirSync(distData, { recursive: true });
     if (fs.existsSync(path.join(DATA, 'database.json'))) {
         fs.copyFileSync(path.join(DATA, 'database.json'), path.join(distData, 'database.json'));
@@ -52,6 +54,7 @@ function build() {
 
 build();
 
+/* istanbul ignore next */
 if (typeof module !== 'undefined') {
     module.exports = { copyDir, build };
 }

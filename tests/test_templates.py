@@ -118,7 +118,7 @@ class TestBaseTemplate:
             total_categories=0,
         )
         assert 'name="p:domain_verify"' in html
-        assert 'content="YOUR_PINTEREST_CODE"' in html
+        assert 'content="c816c2b41079835efd234cb5afef59bf"' in html
 
 
 class TestItemTemplate:

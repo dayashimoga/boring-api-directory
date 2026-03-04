@@ -120,7 +120,7 @@ describe('HTML Structure', () => {
 
         test('has Pinterest domain verification', () => {
             expect(html).toContain('name="p:domain_verify"');
-            expect(html).toContain('content="YOUR_PINTEREST_CODE"');
+            expect(html).toContain('content="c816c2b41079835efd234cb5afef59bf"');
         });
 
         test('has Pinterest share button', () => {

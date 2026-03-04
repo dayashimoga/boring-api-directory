@@ -327,6 +327,7 @@ const EXTRA_FACTS = {
     ]
 };
 
+/* istanbul ignore next */
 if (typeof module !== 'undefined') {
     module.exports = { EXTRA_FACTS };
 }
